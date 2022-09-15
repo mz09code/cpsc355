@@ -25,11 +25,11 @@
 	- Typecasts
 	- Libraries that extend the core language (although the mechanisms differ somewhat)
 - Whats Different
-	- No classes or objects
+	- No classes or objects, c has struct
 	- Arrays are simpler
 	- C-Strings are much more limited
 	- No Collections
-	- No garbage collection
+	- No garbage collection, you have to feee it 
 	- Pointers !! (Memory addresses)
 
 
@@ -44,20 +44,20 @@
 	| long | long |
 	| float | float |
 	| double | double |
-	| char | char |
-	| byte | N/A |
-	| boolean | N/A |
+	| char | char | 8-bit
+	| byte | N/A | through lib, 8-bit, unsigned
+	| boolean | N/A |through lib, abstract type, not type(any type could use)not 0 is true, 0 is false
 
 - Strings
-	In C, strings are simply arrays of chars. That’s it. The following allocates a string that can hold 32 characters:
+	In C, strings are simply arrays of chars. That’s it. The following allocates a string that can hold 32 characters, there is no wrap like in Java:
 	```c
-	char name[32];
+	char name[32]; # not store value in that location
 	```
 	You can use the string literal syntax to initialize a character array, and if you do, the C compiler is smart enough to figure out the length for itself
 	```c
-	char name[] = "George";
+	char name[] = "George"; it's lengthis 7 with 0 in the end
 	```
-	**C-strings are null terminated**
+	**C-strings are null terminated, when you print it, it will find the 0 to stop, if 32nd is not 0,it will continue**
 
 
 ## 3. Input and Output
@@ -76,6 +76,7 @@
 	printf("PI (2 decimal places) = %.2f", num2); 		// PI (2 decimal places) = 3.14
 
 	char str[] = "Sheldon Cooper";
+	char str1[3] = {'s','n','0'},				// test memeory leak
 	printf("Name :: %s", str);				// Name :: Sheldon Cooper
 	```
 
@@ -87,11 +88,11 @@
 	```c
 	int num;
 	print("Enter a number : ");
-	scanf("%d", &num);
+	scanf("%d", &num); // & is to give the address of the num, num is value
 
 	char str[10];
-	scanf("%9s", str);
-	printf("Entered string : %s", str);
+	scanf("%9s", str); // only take 9 from user, 10th is 0
+	printf("Entered string : %s", str); // str is the address already, array is the memory location by itself
 	```
 
 - **getchar** - https://man7.org/linux/man-pages/man3/getchar.3p.html
