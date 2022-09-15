@@ -45,8 +45,8 @@
 	| float | float |
 	| double | double |
 	| char | char | 8-bit
-	| byte | N/A | through lib, 8-bit, unsigned
-	| boolean | N/A |through lib, abstract type, not type(any type could use)not 0 is true, 0 is false
+	| byte | N/A | through lib, 8-bit, unsigned|
+	| boolean | N/A |through lib, abstract type, not type(any type could use)not 0 is true, 0 is false|
 
 - Strings
 	In C, strings are simply arrays of chars. That’s it. The following allocates a string that can hold 32 characters, there is no wrap like in Java:
@@ -91,7 +91,7 @@
 	scanf("%d", &num); // & is to give the address of the num, num is value
 
 	char str[10];
-	scanf("%9s", str); // only take 9 from user, 10th is 0
+	scanf("%9s", str); // only take 9 from user, 10th is 0, max is 9, you can type 5,8
 	printf("Entered string : %s", str); // str is the address already, array is the memory location by itself
 	```
 
@@ -100,12 +100,12 @@
 	- Example:
 	```c
 	#include <stdio.h>
-
+	// could we use void ?
 	int main () {
 		char c;
 
 		printf("Enter character: ");
-		c = getchar();
+		c = getchar(); //scanf("%c")
 
 		printf("Character entered: ");
 		putchar(c);
@@ -141,11 +141,12 @@
 
 - Example:
 	```c
+	#include <string.h>
 	char str[] = "Hello World";
 	char str2[32];
 	printf("String length = %d", strlen(str));
-	strcpy(str2, str);
-	printf("Copied string : %s", str2);
+	strcpy(str2, str);// copy from one location to another one, until it find a 0 in 1st string
+	printf("Copied string : %s", str2); // strat from the start until it finds zero
 	```
 
 ## References
